@@ -46,9 +46,10 @@ def fortune():
 def weather():
     """Return a weather-info dictionary for this zipcode."""
 
-    zipcode = request.args.get('zipcode')
-    weather_info = WEATHER.get(zipcode, DEFAULT_WEATHER)
-    return jsonify(weather_info)
+    zipcode = request.args.get('zipcode')    #get zipcode as input from user
+    weather_info = WEATHER.get(zipcode, DEFAULT_WEATHER)	#store value of zipcode or 
+    														#store value of default weather
+    return jsonify(weather_info)	#when returning from flask pass to jsonify to parse				
 
 
 @app.route('/order-melons.json', methods=['POST'])

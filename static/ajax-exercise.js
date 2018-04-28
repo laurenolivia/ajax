@@ -37,17 +37,25 @@ $('#get-fortune-button').on('click', getFortune);
 
 // PART 2: SHOW WEATHER
 
-function showWeather(evt) {
+function showForecast(results) {
+    $("#zipcode-field").html(results);
+}
+// Request happens here
+// request is made to /weather.json route
+// formData stores object zipcode:value
+// 
+function getForecast(evt) {
     evt.preventDefault();
 
     let url = "/weather.json";
     let formData = {"zipcode": $("#zipcode-field").val()};
 
-
-    // TODO: request weather with that URL and show the forecast in #weather-info
+    $.get(url, formData, showForecast);
 }
-
-$("#weather-form").on('submit', showWeather);
+// Event happens here
+// Event handler wait for 'submit' on element id
+// calls function getForecast
+$("#weather-form").on('submit', getForecast);
 
 
 
